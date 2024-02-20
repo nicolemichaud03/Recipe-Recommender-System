@@ -5,8 +5,6 @@ Taking into account user preferences, shown by recipes they have rated highly in
 <img src= "images/recipes.jpg" alt = "Recipe Image">
 
 ## Business Understanding and Data Understanding
-<!--(data, target, rationale), Using data, can we predict target? This would be useful because rationale.-->
-
 The proposed recipe recommendation system would be useful, because it can be time consuming and repetitive for people to come up with new recipes to make all the time, especially when their options are narrowed down due to dietary restrictions. If a recommender system took into account not only a user's preferences, based on past recipes that the user has rated highly, but also the type of diet category that the user is most likely to enjoy a recipe from, then this can simplify this task for the user and in turn, make them favor our service more for finding recipes in the future.
 
 While recommendations based solely off of past user ratings can be good recommendations, adding in more information (in this case, diet-types of recipes) can make the recommendations more personalized. With a neural network, extra user or item features can be incorporated into a recommendation system model easily, in the form of embeddings. 
@@ -14,26 +12,16 @@ While recommendations based solely off of past user ratings can be good recommen
 See this <a href="https://towardsdatascience.com/modern-recommendation-systems-with-neural-networks-3cc06a6ded2c">blog post</a> to learn more about the different types of recommendation systems you can build with neural networks. 
 
 
-<!--  Explain the project context, using at least one citation to demonstrate your domain understanding
-- Consider including visualizations here as well
-
-- There are plenty of recommendation systems for recipes already out there, but I wanted to include the added features of different dietary restrictions, because that is something that is relevant to me. -->
-
 ## Data Preparation
-(Feature engineering for diet-type)
+
 In the miscellaneous notebook associated with this project, the different features of the recipe data were compared to see which ones would contain the most information about each of the three diet types that will be taken into account (vegetarian, vegan, and gluten-free). It was determined that the 'tags' feature contained the most information about diets that were gluten-free, while a different approach, ingredient filtering, would be necessary for recipes of the vegan and vegetarian diet-types.
 
 A text cleaning function removed punctuation, numbers, and symbols from the relevant text data columns, and made all letters lowercase. Using food category information mainly sourced from the <a href="https://www.ars.usda.gov/ARSUserFiles/80400530/pdf/1720/Food_Category_List_2017-March%202020.pdf">USDA</a>, I compiled an extensive list of the ingredient words that would be used in recipes containing meat, seafood, and other animal products. Recipe's that did not contain any of the animal product ingredients were labeled vegan, and recipes that did not contain specifically meat or seafood were labeled vegetarian. Recipes can be all or none of these diet types. A new column was created that combined the designations for each of these diet types for each recipe to be used as a single embedding in the nerual network model.
 
 ## Modeling and Evaluation
-<!--What kind of model(s) did you use?
--How well did your final model perform, compared to the baseline?-->
 
 This is essentially a regression task, achieved by Collaborative Filtering. We are trying to predict a user's rating of recipes they have not yet tried, and we are doing so by comparing the user to other similar users and the recipes that they've rated highly (user-user similarity). Then, we want to rank these retrieved item ratings to provide the user with the top "n" recommendations they are most likely to rate highly. For this purpose, we need to use a multi-task neural network model that achieves both the retrieval and ranking tasks.
-<!--<a href= "https://blog.searce.com/recommendation-systems-using-tensorflow-recommenders-d7d12167b0b7">
-    
-</a>
-<img src="images/multitask_model.png" alt = "Multi-Task Model">-->
+
 
 Using  <a href="https://www.tensorflow.org/recommenders/examples/multitask">TensorFlow Recommenders </a>, I created an initial (baseline) model that contained only the embeddings for the user IDs and recipe IDs and made recommendations only based on previous rating data from users, and that completed both retrieval and ranking tasks for recommendations. By compiling models with different weights assigned to both the retrieval and ranking task, it was determined that the joint model (both retrieval and ranking tasks given weight) performed the best overall.
  
@@ -65,13 +53,3 @@ Next Steps:
 ### Limitations:
 - Model takes a long time to run and is computationally expensive
 - Diet type classifications of recipes are not 100% reliable
-
-
-
-
-
-###### Sources:
-- youtube playlist: https://www.youtube.com/playlist?list=PLQY2H8rRoyvy2MiyUBz5RWZr5MPFkV3qz
-- TF site
-- blogpost(s):https://blog.searce.com/recommendation-systems-using-tensorflow-recommenders-d7d12167b0b7
-https://medium.com/@jaayush12/streamlining-recommendation-systems-with-tensorflow-recommenders-tfrs-f77801d3f059
