@@ -19,46 +19,34 @@ The proposed recipe recommendation system would be useful, because it can be tim
 (Feature engineering for diet-type)
 In the miscellaneous notebook associated with this project, the different features of the recipe data were compared to see which ones would contain the most information about each of the three diet types that will be taken into account (vegetarian, vegan, and gluten-free). It was determined that the 'tags' feature contained the most information about diets that were gluten-free, while a different approach, ingredient filtering, would be necessary for recipes of the vegan and vegetarian diet-types.
 
-A text cleaning function removed punctuation, numbers, and symbols from the relevant text data columns, and made all letters lowercase. Using food category information sourced from the <a href="https://www.ars.usda.gov/ARSUserFiles/80400530/pdf/1720/Food_Category_List_2017-March%202020.pdf">USDA</a>, I compiled an extensive list of the ingredient words that would be used in recipes containing meat, seafood, and other animal products. Recipe's that did not contain any of the animal product ingredients were labeled vegan, and recipes that did not contain specifically meat or seafood were labeled vegetarian. Recipes can be all or none of these diet types. A new column was created that combined the designations for each of these diet types for each recipe to be used as a single embedding in the nerual network model.
+A text cleaning function removed punctuation, numbers, and symbols from the relevant text data columns, and made all letters lowercase. Using food category information mainly sourced from the <a href="https://www.ars.usda.gov/ARSUserFiles/80400530/pdf/1720/Food_Category_List_2017-March%202020.pdf">USDA</a>, I compiled an extensive list of the ingredient words that would be used in recipes containing meat, seafood, and other animal products. Recipe's that did not contain any of the animal product ingredients were labeled vegan, and recipes that did not contain specifically meat or seafood were labeled vegetarian. Recipes can be all or none of these diet types. A new column was created that combined the designations for each of these diet types for each recipe to be used as a single embedding in the nerual network model.
 
 ## Modeling and Evaluation
 <!--What kind of model(s) did you use?
 -How well did your final model perform, compared to the baseline?-->
 
-This is essentially a regression task, achieved by Collaborative Filtering. We are trying to predict a user's rating of recipes they have not yet tried, and we are doing so by comparing the user to other similar users and the recipes that they've rated highly (user-user similarity).
+This is essentially a regression task, achieved by Collaborative Filtering. We are trying to predict a user's rating of recipes they have not yet tried, and we are doing so by comparing the user to other similar users and the recipes that they've rated highly (user-user similarity). Then, we want to rank these retrieved item ratings to provide the user with the top "n" recommendations they are most likely to rate highly. For this purpose, we need to use a multi-task neural network model that achieves both the retrieval and ranking tasks.
 <!--<a href= "https://blog.searce.com/recommendation-systems-using-tensorflow-recommenders-d7d12167b0b7">
     
 </a>
 <img src="images/multitask_model.png" alt = "Multi-Task Model">-->
 
-Using  <a href="https://www.tensorflow.org/recommenders/examples/multitask">TensorFlow Recommenders </a>, I created an initial (baseline) multi-task neural network model that contained only the embeddings for the user IDs and recipe IDs and made recommendations only based on previous rating data from users, and that completed both retrieval and ranking tasks for recommendations. 
+Using  <a href="https://www.tensorflow.org/recommenders/examples/multitask">TensorFlow Recommenders </a>, I created an initial (baseline) model that contained only the embeddings for the user IDs and recipe IDs and made recommendations only based on previous rating data from users, and that completed both retrieval and ranking tasks for recommendations. By compiling models with different weights assigned to both the retrieval and ranking task, it was determined that the joint model (both retrieval and ranking tasks given weight) performed the best overall.
  
  (vis. to show that joint model did best overall) 
- 
-As it was shown in the TensorFlow Recommenders guide, the weights of both the retrieval and ranking tasks are able to be assigned when compiling the model. This way, we are able to see how each task performs separately as well as together.
 
-This model had a Top-100 Retrieval Accuracy of about __ and an RMSE of about __.
+The joint model had a Top-100 Retrieval Accuracy of about __ and an RMSE of about __.
 
 In the next model, I added in an embedding for the diet-type feature that I created.
 
-While I experimented with adding various additional feature embeddings to the model along with the diet-type embedding, none of those models performed as well as the model with only the diet-type embedding added.
+This model had a Top-100 Retrieval Accuracy of about __ and an RMSE of about __.
 
 I then used ScaNN (Scalable Nearest Neighbors), with tuned hyperparameters, in an attempt to optimize the speed and performance of the retrieval task. This produced my final model with a top-100 Retrieval accuracy of __ and an RMSE of __.
  
  (vis. to show that scann model did best overall) 
 
 
-<!--"In our training data we have positive (user, movie) pairs. To figure out how good our model is, we need to compare the affinity score that the model calculates for this pair to the scores of all the other possible candidates: if the score for the positive pair is higher than for all other candidates, our model is highly accurate.
-
-To do this, we can use the tfrs.metrics.FactorizedTopK metric. The metric has one required argument: the dataset of candidates that are used as implicit negatives for evaluation."-->
 ## Conclusion
-<!--How would you recommend that your model be used?-->
-
-
-### Limitations:
-- Model takes a long time to run and is computationally expensive
-- Diet type classifications of recipes are not 100% reliable
-
 
 ### Next Steps:
 Next Steps:
@@ -69,6 +57,12 @@ Next Steps:
     - experiment with different depths
     - try using a feature cross
     - further tune model parameters
+    
+### Limitations:
+- Model takes a long time to run and is computationally expensive
+- Diet type classifications of recipes are not 100% reliable
+
+
 
 
 
