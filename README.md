@@ -4,13 +4,24 @@ Taking into account user preferences, shown by recipes they have rated highly in
 
 <img src= "images/recipes.jpg" alt = "Recipe Image">
 
-## Business Understanding and Data Understanding
+## Business Understanding
 The proposed recipe recommendation system would be useful, because it can be time consuming and repetitive for people to come up with new recipes to make all the time, especially when their options are narrowed down due to dietary restrictions. If a recommender system took into account not only a user's preferences, based on past recipes that the user has rated highly, but also the type of diet category that the user is most likely to enjoy a recipe from, then this can simplify this task for the user and in turn, make them favor our service more for finding recipes in the future.
 
 While recommendations based solely off of past user ratings can be good recommendations, adding in more information (in this case, diet-types of recipes) can make the recommendations more personalized. With a neural network, extra user or item features can be incorporated into a recommendation system model easily, in the form of embeddings. 
 
 See this <a href="https://towardsdatascience.com/modern-recommendation-systems-with-neural-networks-3cc06a6ded2c">blog post</a> to learn more about the different types of recommendation systems you can build with neural networks. 
 
+## Data Understanding
+
+The <a href="">user and recipe data</a> is from Food.com, collected from the years 2000 to 2018.
+
+The data contains 226,570 unique users who have rated between 1 and 7,671 recipes:
+
+<img src= "images/ratings_per_user.png" alt = "Ratings per User">
+
+And it contains 231,637 different recipes that have been rated by between 1 and 1,613 users:
+
+<img src= "images/ratings_per_recipe.png" alt = "Ratings per Recipe">
 
 ## Data Preparation
 
@@ -21,7 +32,6 @@ A text cleaning function removed punctuation, numbers, and symbols from the rele
 ## Modeling and Evaluation
 
 This is essentially a regression task, achieved by Collaborative Filtering. We are trying to predict a user's rating of recipes they have not yet tried, and we are doing so by comparing the user to other similar users and the recipes that they've rated highly (user-user similarity). Then, we want to rank these retrieved item ratings to provide the user with the top "n" recommendations they are most likely to rate highly. For this purpose, we need to use a multi-task neural network model that achieves both the retrieval and ranking tasks.
-
 
 Using  <a href="https://www.tensorflow.org/recommenders/examples/multitask">TensorFlow Recommenders </a>, I created an initial (baseline) model that contained only the embeddings for the user IDs and recipe IDs and made recommendations only based on previous rating data from users, and that completed both retrieval and ranking tasks for recommendations. By compiling models with different weights assigned to both the retrieval and ranking task, it was determined that the joint model (both retrieval and ranking tasks given weight) performed the best overall.
  
