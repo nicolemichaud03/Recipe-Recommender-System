@@ -9,6 +9,10 @@ Taking into account user preferences, shown by recipes they have rated highly in
 
 The proposed recipe recommendation system would be useful, because it can be time consuming and repetitive for people to come up with new recipes to make all the time, especially when their options are narrowed down due to dietary restrictions. If a recommender system took into account not only a user's preferences, based on past recipes that the user has rated highly, but also the type of diet category that the user is most likely to enjoy a recipe from, then this can simplify this task for the user and in turn, make them favor our service more for finding recipes in the future.
 
+While recommendations based solely off of past user ratings can be good recommendations, adding in more information (in this case, diet-types of recipes) can make the recommendations more personalized. With a neural network, extra user or item features can be incorporated into a recommendation system model easily, in the form of embeddings. 
+
+See this <a href="https://towardsdatascience.com/modern-recommendation-systems-with-neural-networks-3cc06a6ded2c">blog post</a> to learn more about the different types of recommendation systems you can build with neural networks. 
+
 
 <!--  Explain the project context, using at least one citation to demonstrate your domain understanding
 - Consider including visualizations here as well
