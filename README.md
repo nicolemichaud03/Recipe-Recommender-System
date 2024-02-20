@@ -3,26 +3,27 @@ It can be hard to continuously come up with new and interesting recipes to cook,
 Taking into account user preferences, shown by recipes they have rated highly in the past, as well as their certain dietary restriction categories of recipes, we create a model that is able to provide the top 3 recommendations for next recipes to try that the user is most likely to rate highly.
 
 <img src= "images/recipes.jpg" alt = "Recipe Image">
+
 ## Business Understanding and Data Understanding
-(data, target, rationale), Using data, can we predict target? This would be useful because rationale.
+<!--(data, target, rationale), Using data, can we predict target? This would be useful because rationale.-->
 
 The proposed recipe recommendation system would be useful, because it can be time consuming and repetitive for people to come up with new recipes to make all the time, especially when their options are narrowed down due to dietary restrictions. If a recommender system took into account not only a user's preferences, based on past recipes that the user has rated highly, but also the type of diet category that the user is most likely to enjoy a recipe from, then this can simplify this task for the user and in turn, make them favor our service more for finding recipes in the future.
 
 
-- Explain the project context, using at least one citation to demonstrate your domain understanding
+<!--  Explain the project context, using at least one citation to demonstrate your domain understanding
 - Consider including visualizations here as well
 
-- There are plenty of recommendation systems for recipes already out there, but I wanted to include the added features of different dietary restrictions, because that is something that is relevant to me. 
+- There are plenty of recommendation systems for recipes already out there, but I wanted to include the added features of different dietary restrictions, because that is something that is relevant to me. -->
 
 ## Data Preparation
 (Feature engineering for diet-type)
 In the miscellaneous notebook associated with this project, the different features of the recipe data were compared to see which ones would contain the most information about each of the three diet types that will be taken into account (vegetarian, vegan, and gluten-free). It was determined that the 'tags' feature contained the most information about diets that were gluten-free, while a different approach, ingredient filtering, would be necessary for recipes of the vegan and vegetarian diet-types.
 
-A text cleaning function removed punctuation, numbers, and symbols from the relevant text data columns, and made all letters lowercase. Using food category information sourced from the USDA, I compiled an extensive list of the ingredient words that would be used in recipes containing meat, seafood, and other animal products. Recipe's that did not contain any of the animal product ingredients were labeled vegan, and recipes that did not contain specifically meat or seafood were labeled vegetarian. Recipes can be all or none of these diet types. A new column was created that combined the designations for each of these diet types for each recipe to be used as a single embedding in the nerual network model.
+A text cleaning function removed punctuation, numbers, and symbols from the relevant text data columns, and made all letters lowercase. Using food category information sourced from the <a href="https://www.ars.usda.gov/ARSUserFiles/80400530/pdf/1720/Food_Category_List_2017-March%202020.pdf">USDA</a>, I compiled an extensive list of the ingredient words that would be used in recipes containing meat, seafood, and other animal products. Recipe's that did not contain any of the animal product ingredients were labeled vegan, and recipes that did not contain specifically meat or seafood were labeled vegetarian. Recipes can be all or none of these diet types. A new column was created that combined the designations for each of these diet types for each recipe to be used as a single embedding in the nerual network model.
 
 ## Modeling and Evaluation
--What kind of model(s) did you use?
--How well did your final model perform, compared to the baseline?
+<!--What kind of model(s) did you use?
+-How well did your final model perform, compared to the baseline?-->
 
 This is essentially a regression task, achieved by Collaborative Filtering. We are trying to predict a user's rating of recipes they have not yet tried, and we are doing so by comparing the user to other similar users and the recipes that they've rated highly (user-user similarity).
 <!--<a href= "https://blog.searce.com/recommendation-systems-using-tensorflow-recommenders-d7d12167b0b7">
@@ -47,22 +48,27 @@ I then used ScaNN (Scalable Nearest Neighbors), with tuned hyperparameters, in a
  (vis. to show that scann model did best overall) 
 
 
-"In our training data we have positive (user, movie) pairs. To figure out how good our model is, we need to compare the affinity score that the model calculates for this pair to the scores of all the other possible candidates: if the score for the positive pair is higher than for all other candidates, our model is highly accurate.
+<!--"In our training data we have positive (user, movie) pairs. To figure out how good our model is, we need to compare the affinity score that the model calculates for this pair to the scores of all the other possible candidates: if the score for the positive pair is higher than for all other candidates, our model is highly accurate.
 
-To do this, we can use the tfrs.metrics.FactorizedTopK metric. The metric has one required argument: the dataset of candidates that are used as implicit negatives for evaluation."
+To do this, we can use the tfrs.metrics.FactorizedTopK metric. The metric has one required argument: the dataset of candidates that are used as implicit negatives for evaluation."-->
 ## Conclusion
--How would you recommend that your model be used?
+<!--How would you recommend that your model be used?-->
 
 
 ### Limitations:
+- Model takes a long time to run and is computationally expensive
+- Diet type classifications of recipes are not 100% reliable
 
 
-"However, optimizing the model's predictions on individual movies is not necessarily the best method for training ranking models. We do not need ranking models to predict scores with great accuracy. Instead, we care more about the ability of the model to generate an ordered list of items that matches the user's preference ordering."
 ### Next Steps:
-- experiment with different depths for the neural network model (https://www.tensorflow.org/recommenders/examples/deep_recommenders)
-- look at user reviews (and other text features of the recipes). I didn't do this in this project, because the goal was not sentiment analysis.
-- cross network
-- more diet types in future system
+Next Steps:
+- Deploy model
+- Update model with new data
+- Add more diet types 
+- Try to improve model metrics:
+    - experiment with different depths
+    - try using a feature cross
+    - further tune model parameters
 
 
 
