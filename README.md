@@ -56,5 +56,8 @@ Next Steps:
     - further tune model parameters
     
 ### Limitations:
-- Model takes a long time to run and is computationally expensive
-- Diet type classifications of recipes are not 100% reliable
+ - Model takes a long time to run and is computationally expensive
+ - Metrics would likely improve with more epochs, but this was not able to be explored due to long runtime
+ - Diet type classifications of recipes are not 100% reliable
+
+
