@@ -34,19 +34,14 @@ A text cleaning function removed punctuation, numbers, and symbols from the rele
 This is essentially a regression task, achieved by Collaborative Filtering. We are trying to predict a user's rating of recipes they have not yet tried, and we are doing so by comparing the user to other similar users and the recipes that they've rated highly (user-user similarity). Then, we want to rank these retrieved item ratings to provide the user with the top "n" recommendations they are most likely to rate highly. For this purpose, we need to use a multi-task neural network model that achieves both the retrieval and ranking tasks.
 
 Using  <a href="https://www.tensorflow.org/recommenders/examples/multitask">TensorFlow Recommenders </a>, I created an initial (baseline) model that contained only the embeddings for the user IDs and recipe IDs and made recommendations only based on previous rating data from users, and that completed both retrieval and ranking tasks for recommendations. By compiling models with different weights assigned to both the retrieval and ranking task, it was determined that the joint model (both retrieval and ranking tasks given weight) performed the best overall.
- 
- (vis. to show that joint model did best overall) 
 
-The joint model had a Top-100 Retrieval Accuracy of about __ and an RMSE of about __.
+The joint model performed better than the ranking-only and the retrieval-only models with a Top-100 Retrieval Accuracy of about 0.001 and an RMSE of about 2.196.
 
 In the next model, I added in an embedding for the diet-type feature that I created.
 
-This model had a Top-100 Retrieval Accuracy of about __ and an RMSE of about __.
+This model had a top-100 retrieval accuracy of about 0.0023 and an RMSE of about 1.676. 
 
-I then used ScaNN (Scalable Nearest Neighbors), with tuned hyperparameters, in an attempt to optimize the speed and performance of the retrieval task. This produced my final model with a top-100 Retrieval accuracy of __ and an RMSE of __.
- 
- (vis. to show that scann model did best overall) 
-
+I then used ScaNN (Scalable Nearest Neighbors) in an attempt to optimize the speed and performance of the retrieval task. Compared to brute force serving, ScaNN was more efficient.
 
 ## Conclusion
 
