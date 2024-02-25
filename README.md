@@ -1,7 +1,9 @@
 # Recipe Recommendation System with Dietary Restriction Embeddings
 
 ##### Project by Nicole Michaud, 02/26/2024
+
 [Final Notebook](/https://github.com/nicolemichaud03/Recipe-Recommender-System/blob/main/NNnotebook.ipynb)
+
 [Presentation](/https://github.com/nicolemichaud03/Recipe-Recommender-System/blob/main/PDFs/presentation.pdf)
 <!-- [link text](/path/to/file)
  -->
