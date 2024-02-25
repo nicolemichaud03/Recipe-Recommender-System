@@ -1,7 +1,10 @@
 # Recipe Recommendation System with Dietary Restriction Embeddings
 
 ##### Project by Nicole Michaud, 02/26/2024
-
+[Final Notebook](/https://github.com/nicolemichaud03/Recipe-Recommender-System/blob/main/NNnotebook.ipynb)
+[Presentation](/https://github.com/nicolemichaud03/Recipe-Recommender-System/blob/main/PDFs/presentation.pdf)
+<!-- [link text](/path/to/file)
+ -->
 ## Introduction
 It can be hard to continuously come up with new and interesting recipes to cook, especially if you have certain dietary restrictions. Many people use websites such as food.com to find, try, and rate recipes. From user and recipe data from Food.com, can we provide users with recommendations for the next recipes that users should try, taking into account their dietary specifications?
 Taking into account user preferences, shown by recipes they have rated highly in the past, as well as their certain dietary restriction categories of recipes, we create a model that is able to provide the top 3 recommendations for next recipes to try that the user is most likely to rate highly.
