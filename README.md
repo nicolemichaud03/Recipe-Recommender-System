@@ -50,6 +50,8 @@ In the next model, I added in an embedding for the diet-type feature that I crea
 
 This model had a top-100 retrieval accuracy of about 0.0023 and an RMSE of about 1.676. 
 
+This was the best performing model in terms of the lowest RMSE value. The top-100 accuracy value is lower than the previous joint model, but considering the sparsity of the data, this is understandable. Perhaps this value could be improved further with other features or tuning.
+
 I then used ScaNN (Scalable Nearest Neighbors) in an attempt to optimize the speed and performance of the retrieval task. Compared to brute force serving, ScaNN was more efficient.
 
 ## Conclusion
