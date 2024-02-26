@@ -6,11 +6,6 @@
 
 <a href="https://github.com/nicolemichaud03/Recipe-Recommender-System/blob/main/PDFs/presentation.pdf">Presentation</a>
 
-<!-- [Final Notebook](/https://github.com/nicolemichaud03/Recipe-Recommender-System/blob/main/NNnotebook.ipynb)
-
-[Presentation](/https://github.com/nicolemichaud03/Recipe-Recommender-System/blob/main/PDFs/presentation.pdf) -->
-<!-- [link text](/path/to/file)
- -->
 ## Introduction
 It can be hard to continuously come up with new and interesting recipes to cook, especially if you have certain dietary restrictions. Many people use websites such as food.com to find, try, and rate recipes. From user and recipe data from Food.com, can we provide users with recommendations for the next recipes that users should try, taking into account their dietary specifications?
 Taking into account user preferences, shown by recipes they have rated highly in the past, as well as their certain dietary restriction categories of recipes, we create a model that is able to provide the top 3 recommendations for next recipes to try that the user is most likely to rate highly.
@@ -36,6 +31,8 @@ And it contains 231,637 different recipes that have been rated by between 1 and 
 
 <img src= "images/ratings_per_recipe.png" alt = "Ratings per Recipe">
 
+Recipes were rated by users on a scale of 1 to 5 stars.
+
 ## Data Preparation
 
 In the miscellaneous notebook associated with this project, the different features of the recipe data were compared to see which ones would contain the most information about each of the three diet types that will be taken into account (vegetarian, vegan, and gluten-free). It was determined that the 'tags' feature contained the most information about diets that were gluten-free, while a different approach, ingredient filtering, would be necessary for recipes of the vegan and vegetarian diet-types.
@@ -58,11 +55,20 @@ This was the best performing model in terms of the lowest RMSE value. The top-10
 
 I then used ScaNN (Scalable Nearest Neighbors) in an attempt to optimize the speed and performance of the retrieval task. Compared to brute force serving, ScaNN was more efficient.
 
+##### An example user with recommendations:
+
+Top Recommendations for User #38094:
+- ‘Cherry and blueberry trifle’
+- ‘Chicken and basil meatballs’
+- ‘Chicken and vegetable salad’
+
+<img src= "images/example_recs.png" alt = "Example">
+
 ## Conclusion
 
 ### Next Steps:
 Next Steps:
-- Deploy model
+- Deploy model with diet-type embeddings
 - Update model with new data
 - Add more diet types 
 - Try to improve model metrics:
