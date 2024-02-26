@@ -2,9 +2,13 @@
 
 ##### Project by Nicole Michaud, 02/26/2024
 
-[Final Notebook](/https://github.com/nicolemichaud03/Recipe-Recommender-System/blob/main/NNnotebook.ipynb)
+<a href="https://github.com/nicolemichaud03/Recipe-Recommender-System/blob/main/NNnotebook.ipynb">Final Notebook</a>
 
-[Presentation](/https://github.com/nicolemichaud03/Recipe-Recommender-System/blob/main/PDFs/presentation.pdf)
+<a href="https://github.com/nicolemichaud03/Recipe-Recommender-System/blob/main/PDFs/presentation.pdf">Presentation</a>
+
+<!-- [Final Notebook](/https://github.com/nicolemichaud03/Recipe-Recommender-System/blob/main/NNnotebook.ipynb)
+
+[Presentation](/https://github.com/nicolemichaud03/Recipe-Recommender-System/blob/main/PDFs/presentation.pdf) -->
 <!-- [link text](/path/to/file)
  -->
 ## Introduction
